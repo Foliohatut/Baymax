@@ -1,0 +1,80 @@
+body {
+    background-image: url("/images/texture.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+	
+
+	
+}
+
+h1 {
+    color: gray;
+    text-align: center;
+}
+a.image_bat {
+    overflow: hidden;
+	position: relative;
+    left: 20%;
+	top: 15%; 
+}
+
+a.image_bat img {
+    width: 100px;
+}
+
+a.image_car {
+	overflow: hidden;
+	position: relative;
+    left: 40%;
+	top: 15%; 
+
+}
+
+a.image_car img {
+    width: 180px;
+}
+
+a.image_com {
+	overflow: hidden;
+	position: relative;
+    left: 50%;
+	top: 15%; 
+
+}
+
+a.image_com img {
+    width: 140px;
+}
+
+p {
+    border: 8px solid white;
+    outline-color:blue;
+	position: relative;
+    left: 24%;
+	top: 40%; 
+	width: 800px;
+    height: 450px;
+	background: gray;
+	
+}
+
+
+a.image_on {
+	overflow: hidden;
+	position: absolute;
+    left: 70%;
+	top: 15%; 
+
+}
+
+a.image_on img {
+    width: 60%;
+}
+
+    p.outset {outline-style: outset;}
+
+
+p {
+    font-family: "Times New Roman";
+    font-size: 20px;
+}
