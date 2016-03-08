@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('console');
+  res.render('console', { title: 'Baymax -- console' });
 });
 
 module.exports = router;

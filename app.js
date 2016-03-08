@@ -5,6 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// Db access
+var db = require('mysql');
+var connection = db.createConnection({
+   host     : 'localhost',
+   user     : 'baymax',
+   database : 'baymax'
+});
+
+
+// Route configurations
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 var ohjaus = require('./routes/ohjaus');
@@ -12,6 +22,14 @@ var loki = require('./routes/loki');
 var console = require('./routes/loki');
 
 var app = express();
+
+
+// Make db accessible to router
+app.use(function(req,res,next){
+    req.db = connection;
+    next();
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
