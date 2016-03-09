@@ -19,7 +19,7 @@ var routes = require('./routes/index');
 //var users = require('./routes/users');
 var ohjaus = require('./routes/ohjaus');
 var loki = require('./routes/loki');
-var console = require('./routes/loki');
+var console = require('./routes/console');
 
 var app = express();
 

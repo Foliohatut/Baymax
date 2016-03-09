@@ -1,5 +1,16 @@
 extends layout
 
+block contentTitle
+    h1= title
+
+block siteStyle
+    link(rel='stylesheet', href='/baymax/stylesheets/etusivu.css')
+    
 block content 
     h1= title
     p Welcome to #{title}
+    
+    img(src='/baymax/images/Car.png')
+    
+    p #{introText}
+    

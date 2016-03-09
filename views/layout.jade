@@ -1,8 +1,14 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title #{layout.siteTitle} -- #{title}
+    link(rel='stylesheet', href='/baymax/stylesheets/style.css')
+    link(rel='stylesheet', href='/baymax/stylesheets/layout.css')
+    
+    
+    
+    
+    block siteStyle
   body
     a(href='/baymax/') Etusivu
     a(href='/baymax/ohjaus/') Ohjaus
@@ -11,4 +17,8 @@ html
     
     block content
     
-    h1 footer
+    footer
+        div
+            h4 #{layout.copyright.person}
+            a(href='http://jarmopesonen.com')
+                img(src='/baymax/images/jarnopesoonen.png' width=100 heigth=100)
