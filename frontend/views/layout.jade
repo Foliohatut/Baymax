@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title #{layout.siteTitle} -- #{title}
+    meta(charset='utf-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/layout.css')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
+    script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
+    script(src="/javascripts/layout.js")
+    
+    
+    block siteHead
+  body
+    a(href='/') Etusivu
+    a(href='/ohjaus/') Ohjaus
+    a(href='/loki/') Loki
+    a(href='/console/') Console
+    a(href='/api/') api
+    
+    block content
+    
+    script documentReady();
+
+    footer
+        div
+            h4 #{layout.copyright.person}@#{layout.copyright.year} 
+            a(href='http://jarmopesonen.com')
+                img(src='/images/jarnopesoonen.png' width=100 heigth=100)
+                img(src='/images/jarno.jpg' width=100 heigth=100)
+            video(src='/images/jarnovideo.mp4' width=200 heigth=200 controls)

@@ -1,0 +1,19 @@
+extends layout
+
+block siteHead
+    link(rel='stylesheet', href='/stylesheets/loki.css')
+
+block content
+    article
+        h1 Lämpötilat
+        p
+            table(class="table table-bordered")
+                thread
+                    tr
+                      th Sensor id
+                      th Temperature
+                      th Date
+                tbody
+                    each id in temperatureSensors
+                        tr
+                            td #{id}
