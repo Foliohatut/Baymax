@@ -2,6 +2,7 @@
 
 function documentReady() {
 
+            /*
             if ("WebSocket" in window)
             {
                //alert("WebSocket is supported by your Browser!");
@@ -34,5 +35,6 @@ function documentReady() {
                // The browser doesn't support WebSocket
                alert("WebSocket NOT supported by your Browser!");
             }
+            */
        
 }

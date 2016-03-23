@@ -1,0 +1,6 @@
+create table valuess (
+	place TINYINT NOT NULL,
+	value TINYINT NOT NULL,
+	date TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (place) REFERENCES places(id)
+);

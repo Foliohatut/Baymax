@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var lokiViewModel = require('../javascript/lokiviewmodel')
+var indexViewModel = require('../javascript/etusivuviewmodel')
 
-/* GET users listing. */
+/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('loki', lokiViewModel);
+    
+  res.render('etusivu', indexViewModel);
 });
 
 module.exports = router;

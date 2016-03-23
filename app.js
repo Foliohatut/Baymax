@@ -13,14 +13,17 @@ var connection = db.createConnection({
    database : 'baymax'
 });
 
-
 // Route configurations
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 var ohjaus = require('./routes/ohjaus');
 var loki = require('./routes/loki');
+//<<<<<<< HEAD:frontend/app.js
 var console = require('./routes/console');
 var api = require('./routes/api');
+//=======
+//var console = require('./routes/loki');
+//>>>>>>> parent of de4ddc6... Each site has its own viemodel "class" now and one base layoutviemodel.:app.js
 
 var app = express();
 var expressWs = require('express-ws')(app);

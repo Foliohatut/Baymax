@@ -20,4 +20,12 @@ router.get('/', function(req, res, next) {
     //res.end("Apinaa!!");
 });
 
+router.get('get/', function(req, res, next) {
+    
+});
+
+router.get('set/', function(req, res, next) {
+
+});
+
 module.exports = router;

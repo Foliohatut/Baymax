@@ -14,6 +14,8 @@ block content
                       th Temperature
                       th Date
                 tbody
-                    each id in temperatureSensors
+                    each tempSensor in temperatureSensors
                         tr
-                            td #{id}
+                            td #{tempSensor[0]}
+                            td #{tempSensor[1]}
+                            td #{tempSensor[2]}
