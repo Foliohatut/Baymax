@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+    $("#nappi").click(function(){
+		$("#alapaa").animate({
+			top: "-=300px"
+		}, 2000, function() {
+		
+		});
+    });
+	$("#nappi2").click(function(){
+		$("#alapaa").animate({
+			top: "+=300px"
+		}, 2000, function() {
+		
+		});
+    });
+});
+</script> 
+</head>
+<body>
+<div>
+
+	<img style="position:absolute; z-index:2; top:5px; left:5px;" src="iskariYlapaa.png">
+	<img id="alapaa" style="position:absolute; z-index:1; top:450px; left:17px;" src="iskariAlapaa.png">
+	
+	<button style="position:absolute; left:200px;" id="nappi">nappi</button>
+	<button style="position:absolute; left:240px;" id="nappi2">nappi</button>
+
+</div>
+
+
+</body>
+</html>
