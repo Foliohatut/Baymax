@@ -1,0 +1,15 @@
+article
+	h1 Lämpötilat
+	p
+		table(class="table table-bordered")
+			thread
+				tr
+					th Paikka
+					th Arvo
+					th Date
+			tbody
+				each value in values
+					tr
+						td #{value.name}
+						td #{value.value}
+						td #{value.date}

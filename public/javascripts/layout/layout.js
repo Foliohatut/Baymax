@@ -1,7 +1,7 @@
 
 
 function documentReady() {
-
+	//var conn = webSocketConnection();
             /*
             if ("WebSocket" in window)
             {

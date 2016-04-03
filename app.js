@@ -1,48 +1,45 @@
+var http = require('http');
+var https = require('https');
 var express = require('express');
+var api = require('./javascript/api/api');
+var app = express();
+var server = http.createServer(app);
+//var servers = https.createServer()
+var ws = require('./javascript/websocket/wsserver')(server, api);
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// Db access
-var db = require('mysql');
-var connection = db.createConnection({
-   host     : 'localhost',
-   user     : 'baymax',
-   database : 'baymax'
-});
 
 // Route configurations
 var routes = require('./routes/index');
-//var users = require('./routes/users');
+var users = require('./routes/users');
 var ohjaus = require('./routes/ohjaus');
 var loki = require('./routes/loki');
 //<<<<<<< HEAD:frontend/app.js
 var console = require('./routes/console');
-var api = require('./routes/api');
+var apiroute = require('./routes/api');
+
+var valueTable = require('./routes/loki/valuetable');
+
 //=======
 //var console = require('./routes/loki');
 //>>>>>>> parent of de4ddc6... Each site has its own viemodel "class" now and one base layoutviemodel.:app.js
 
-var app = express();
-var expressWs = require('express-ws')(app);
-
-app.ws('/', function(ws, req) {
-  ws.on('message', function(msg) {
-      if (msg[0] == 48) {
-          ws.send(msg[0]);
-      }
-    
-  });
-  console.log('socket');
-});
+/*expressWs.on('request', function(request) {
+	console.log("heii");
+});*/
 
 
 // Make db accessible to router
 app.use(function(req,res,next){
-    req.db = connection;
-    next();
+	req.api = api;
+	next();
 });
 
 
@@ -59,23 +56,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-//app.use('/users', users);
+app.use('/users', users);
 app.use('/ohjaus', ohjaus);
 app.use('/loki', loki);
 app.use('/console', console);
-app.use('/api', api);
+app.use('/api', apiroute);
+
+app.use('/valuetable', valueTable);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+	res.end("<img src='/images/404.jpg'>");
+  //var err = new Error('Not Found');
+  //err.status = 404;
+  //next(err);
 });
 
 // error handlers
 
 // development error handler
 // will print stacktrace
+/*
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -95,11 +96,12 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
+*/
 
 
 //wss.on('connection', require("./routes/onconnectionwebsocket"));
 
-app.listen(80);
+//app.listen(80);
+server.listen(80);
 
 module.exports = app;

@@ -1,4 +1,0 @@
-/*function documentReady() {
-    alert("abc");
-    
-}*/

@@ -1,21 +1,21 @@
 extends layout
 
 block siteHead
-    link(rel='stylesheet', href='/stylesheets/loki.css')
-
+	link(rel='stylesheet', href='/stylesheets/loki.css')
+	script(src="/javascripts/loki/loki.js")
 block content
-    article
-        h1 Lämpötilat
-        p
-            table(class="table table-bordered")
-                thread
-                    tr
-                      th Sensor id
-                      th Temperature
-                      th Date
-                tbody
-                    each tempSensor in temperatureSensors
-                        tr
-                            td #{tempSensor[0]}
-                            td #{tempSensor[1]}
-                            td #{tempSensor[2]}
+	article
+		h1 Lämpötilat
+		p
+			table(class="table table-bordered")
+				thread
+					tr
+						th Sensor id
+						th Temperature
+						th Date
+				tbody
+					each tempSensor in temperatureSensors
+						tr
+							td #{tempSensor[0]}
+							td #{tempSensor[1]}
+							td #{tempSensor[2]}

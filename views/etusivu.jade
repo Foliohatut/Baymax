@@ -1,16 +1,16 @@
 extends layout
 
 block contentTitle
-    h1= title
+	h1= title
 
 block siteHead
-    link(rel='stylesheet', href='/stylesheets/etusivu.css')
-    
+	link(rel='stylesheet', href='/stylesheets/etusivu.css')
+	script(src="/javascripts/etusivu/etusivu.js")
 block content 
-    h1= title
-    p Welcome to #{title}
+	h1= title
+	p Welcome to #{title}
     
-    img(src='/images/Car.png')
+	img(src='/images/Car.png')
     
-    p #{introText}
+	p #{introText}
   

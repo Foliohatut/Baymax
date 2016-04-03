@@ -6,6 +6,7 @@ var indexViewModel = require('../javascript/etusivuviewmodel')
 router.get('/', function(req, res, next) {
     
   res.render('etusivu', indexViewModel);
+  console.log("toimiiko");
 });
 
 module.exports = router;
