@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+message SetValueSubCommand {
+	uint32 id = 1;
+	oneof values {
+		int32 iValue = 2;
+		float fValue = 3;
+		uint32 uiValue = 4;
+	}
+	uint32 userId = 5;
+}
+
+message ValueSettedSubCommand {
+	uint32 id = 1;
+	oneof values {
+		int32 iValue = 2;
+		float fValue = 3;
+		uint32 uiValue = 4;
+	}
+}
+
+message GetResourceSubCommand {
+
+}
+
+message ServerCommandBuff {
+	oneof subCommand {
+		SetValueSubCommand setValueSubCommand = 1;
+		ValueSettedSubCommand valueSettedSubCommand = 2;
+		GetResourceSubCommand getREsourceSubCommand = 3;
+	}
+}

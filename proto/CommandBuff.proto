@@ -1,0 +1,14 @@
+
+syntax = "proto3";
+
+import "proto/SetValueSubCommand.proto";
+import "proto/SystemSubCommand.proto";
+import "proto/ManagerSubCommand.proto";
+
+message CommandBuff {
+	oneof subCommand {
+		SetValueSubCommand setValueSubCommand = 1;
+		ManagerSubCommand managerSubCommand = 2;
+		SystemSubCommand SystemSubCommand = 3;
+	}
+}

@@ -7,7 +7,7 @@ $(document).ready(function() {
 	var kori = Kori(document.getElementById('carBodyImg'), document.getElementById('setSuspensionLowButton'), 
 					document.getElementById('setSuspensionNormalButton'), 
 					document.getElementById('setSuspensionHighButton'));
-	window.api.on('suspension', function(value) {
+	window.api.onSetted('suspension', function(value) {
 		if (value === 0) {
 			kori.suspensionModeLow();
 		} else if (value === 1) {

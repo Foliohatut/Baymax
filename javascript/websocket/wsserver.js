@@ -14,6 +14,7 @@ module.exports = function(server, api) {
 	});
 	wsServer.on('request', function(request) {
 		console.log("new connection origin " + request.origin);
+		console.log("request: " + request);
 		var connection = request.accept();
 		if (request.origin !== undefined) {
 			if (request.origin.split('//')[1] == "baymax") {

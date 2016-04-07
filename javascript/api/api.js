@@ -182,9 +182,9 @@ exports.insertNewOtherValue = function(id, value, callback) {
 	var response = {};
 	if (id !== undefined && value !== undefined) {
 		response.parameters_correct = true;
-		connection.query('select count(id) as amount from value_details where id = ?', [id], function(err, rows, fields) {
+		/*connection.query('select count(id) as amount from value_details where id = ?', [id], function(err, rows, fields) {
 			if (!err) {
-				if(rows[0].amount > 0) {
+				if(rows[0].amount > 0) {*/
 					connection.query('insert into other_values(value, value_details) values(?, ?)',  [value, id], function(err, rows, fields) {
 						if (!err) {
 							response.query_success = true;
@@ -194,11 +194,11 @@ exports.insertNewOtherValue = function(id, value, callback) {
 							callback(response);
 						}
 					});
-				}
+				/*}
 			} else {
 				callback(response);
 			}
-		});
+		});*/
 	} else {
 		response.parameters_correct = false;
 		callback(response);
@@ -208,6 +208,23 @@ exports.insertNewOtherValue = function(id, value, callback) {
 
 //
 
-
+exports.checkCredentials = function(credentials, callback) {
+	var response = {};
+	connection.query('select count(id) as amount from users where user = ? and passwd = ?', [credentials.user, credentials.passwd], function(err, rows, fields) {
+		if (!err) {
+			response.query_success = true;
+			if (rows[0].amount > 0) {
+				response.credentials_ok = true;
+				callback(response);
+			} else {
+				response.credentials_ok = false;
+				callback(response);
+			}
+		} else {
+			response.query_success = false;
+			callback(response);
+		}
+	});
+}
 
 

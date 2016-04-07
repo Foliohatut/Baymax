@@ -1,0 +1,9 @@
+
+syntax = "proto3";
+
+
+message CommandBuff {
+	uint32 id = 1;
+	int32 iValue = 2;
+	uint32 userId = 3;
+}

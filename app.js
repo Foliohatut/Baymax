@@ -5,7 +5,7 @@ var api = require('./javascript/api/api');
 var app = express();
 var server = http.createServer(app);
 //var servers = https.createServer()
-var ws = require('./javascript/websocket/wsserver')(server, api);
+var ws = require('./javascript/websocket/wsGateway')(server, api);
 
 var path = require('path');
 var favicon = require('serve-favicon');
