@@ -1,18 +1,39 @@
 
 var Api = function() {
-	var socket = new WebSocket("ws://baymax:baymax@"+ location.hostname + ":" + location.port + "/");
+	var url = "ws://baymax:baymax@"+ location.hostname + ":" + location.port + "/";
+	var socket;
+	var connectInterval;
 	var valueStettedEvents = new Map(); 
-	
-	socket.onopen = function()
-	{
-		Authenticate('jokke', 'vayrynen', function (message) {
-			if (message.credentials_ok) {
-				var indicator = document.getElementById("socketConnectionIndicator");
-				indicator.innerHTML = "Connected";
-				indicator.className = "btn-success";		
+		
+	function Connect() {
+		if (socket === undefined || socket.readyState !== 1) {
+			try {
+			socket = new WebSocket("ws://baymax:baymax@"+ location.hostname + ":" + location.port + "/");
+			socket.onopen = function()
+			{
+				Authenticate('jokke', 'vayrynen', function (message) {
+					if (message.credentials_ok) {
+						var indicator = document.getElementById("socketConnectionIndicator");
+						indicator.innerHTML = "Connected";
+						indicator.className = "btn-success";		
+					}
+				});
 			}
-		});
-	};
+			socket.onclose = function() {
+				//alert("onclose");
+				socket.close();
+				var indicator = document.getElementById("socketConnectionIndicator");
+				indicator.innerHTML = "Disconnected";
+				indicator.className = "btn-danger";
+				setTimeout(Connect, 1000);
+			}
+			} catch(e) {
+				
+			}
+		}
+	}
+	
+	Connect();
 	
 	function Authenticate(user, passwd, callback) {
 		var msg = {};
@@ -28,11 +49,7 @@ var Api = function() {
 		socket.send(JSON.stringify(msg));	
 	}
 	
-	socket.onclose = function() {
-		var indicator = document.getElementById("socketConnectionIndicator");
-		indicator.innerHTML = "Disconnected";
-		indicator.className = "btn-danger";
-	}
+
 	
 	function handleMessages(evt) {
 		var message = JSON.parse(evt.data);
@@ -65,21 +82,11 @@ var Api = function() {
 		msg.subMessage = {};
 		msg.subMessage.id = setted;
 		msg.subMessage.value = value;
-		socket.send(JSON.stringify(msg));
-		if (callback !== undefined) {
-			callback();
-		}
-	}
-	
-	var send = function(cmdType, value, callback) {
-		var msg = {};
-		msg.subMessageType = 'setvalue';
-		msg.subMessage = {};
-		msg.subMessage.id = cmdType;
-		msg.subMessage.value = value;
-		socket.send(JSON.stringify(msg));
-		if (callback !== undefined) {
-			callback();
+		if (socket.readyState === 1) {
+			socket.send(JSON.stringify(msg));
+			if (callback !== undefined) {
+				callback();
+			}
 		}
 	}
 	

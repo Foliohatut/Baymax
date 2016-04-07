@@ -121,6 +121,20 @@ exports.getValueDetailName = function(id, callback) {
 	}
 }
 
+exports.getValueDetailNames = function(callback) {
+	var response = {};
+	connection.query('select name from value_details', function(err, rows, fields) {
+		if (!err) {
+			response.query_success = true;
+			response.names = rows;
+			callback(response);
+		} else {
+			response.query_success = false;
+			callback(response);
+		}
+	});
+}
+
 
 // getothervalues
 
@@ -130,7 +144,7 @@ exports.getOtherValues = function(startIndex, limit, callback) {
 	var limitCurrent = 10;
 	if (startIndex !== undefined) startIndexCurrent = startIndex;
 	if (limit !== undefined) limitCurrent = limit;
-	connection.query('select vd.name, ov.value, av.date from other_values ov left join all_values av on ov.valueid = av.id left join value_details vd on av.value_details = vd.id order by av.date limit ?, ?', [startIndexCurrent, limitCurrent], function(err, rows, fields) {
+	connection.query('select vd.name, ov.value, ov.date from other_values ov left join value_details vd on ov.value_details = vd.id order by ov.date limit ?, ?', [startIndexCurrent, limitCurrent], function(err, rows, fields) {
 		if (!err) {
 			response.query_success = true;
 			response.values = rows;

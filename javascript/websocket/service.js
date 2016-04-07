@@ -10,6 +10,10 @@ function Service(connection, api) {
 	connection.on('message', function(message) {
 		var data = serverBufMessages.ServerCommandBuff.decode(message.binaryData);
 		if (data.valueSettedSubCommand !== undefined) {
+			api.insertNewOtherValue(data.valueSettedSubCommand.id, data.valueSettedSubCommand.iValue, function(response) {
+				
+			});
+			
 			raiseOnSetted(data.valueSettedSubCommand);
 		}
 		

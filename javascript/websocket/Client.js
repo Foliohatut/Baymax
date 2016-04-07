@@ -4,8 +4,8 @@ var fs = require('fs');
 
 function Client(connection, api) {
 	var id;
-	this.user;
-	this.passwd;
+	var user;
+	var passwd;
 	var events = {};
 	var authenticated = false;
 	
@@ -27,24 +27,39 @@ function Client(connection, api) {
 	}
 	
 	function handleUtf8Message(message) {
-		if (!authenticated) {
-			console.log("not authenticated");
-			if (message.Credentials !== undefined) {
-				api.checkCredentials(message.Credentials, function(result) {
-					if (result.credentials_ok) {
-						var response = {}
-						response.credentials_ok = true;
-						connection.sendUTF(JSON.stringify(response));
-						console.log("authenticated");
-						authenticated = true;
+		if (message.type !== undefined) {
+			if (message.type === 'auth') {
+				if (message.Credentials !== undefined) {
+					if (message.Credentials.user !== undefined && message.Credentials.passwd !== undefined) {
+						api.checkCredentials(message.Credentials, function(result) {
+							if (result.credentials_ok) {
+								console.log("user " + message.Credentials.user + " authenticated");
+								var response = {}
+								response.credentials_ok = true;
+								connection.sendUTF(JSON.stringify(response));
+								user = message.Credentials.user;
+								passwd = message.Credentials.passwd;
+								authenticated = true;
+							} else {
+								var response = {}
+								response.credentials_ok = false;
+								connection.sendUTF(JSON.stringify(response));
+							}
+						});
 					} else {
-						connection.sendUTF("Access denided");
-						connection.close();						
+						var response = {}
+						response.credentials_ok = false;
+						connection.sendUTF(JSON.stringify(response));
 					}
-				}) 
-			} else {
-				connection.sendUTF("Access denided");
-				connection.close();					
+				} else {
+					var response = {}
+					response.credentials_ok = false;
+					connection.sendUTF(JSON.stringify(response));					
+				}
+			} else if (message.type === 'setvalue') {
+				
+			} else if (message.type === 'getresource') {
+				
 			}
 		}
 	}
