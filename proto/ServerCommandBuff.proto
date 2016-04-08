@@ -3,20 +3,20 @@ syntax = "proto3";
 message SetValueSubCommand {
 	uint32 id = 1;
 	oneof values {
-		int32 iValue = 2;
-		float fValue = 3;
-		uint32 uiValue = 4;
+		uint32 otherValue = 2;
 	}
-	uint32 userId = 5;
+	uint32 userId = 3;
 }
 
 message ValueSettedSubCommand {
 	uint32 id = 1;
 	oneof values {
-		int32 iValue = 2;
-		float fValue = 3;
-		uint32 uiValue = 4;
+		uint32 otherValue = 2;
+		uint32 currentValue = 3;
+		uint32 voltageValue = 4;
+		float temperatureValue = 5;
 	}
+	uint64 dateSeconds = 6;
 }
 
 message GetResourceSubCommand {

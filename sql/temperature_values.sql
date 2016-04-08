@@ -1,7 +1,8 @@
 CREATE TABLE temperature_values (
 	id INT NOT NULL AUTO_INCREMENT,
-	valueid INT NOT NULL,
-	value float NOT NULL,
+	value_detail INT NOT NULL,
+	value FLOAT NOT NULL,
+	date TIMESTAMP NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(valueid) REFERENCES all_values(id)
+	FOREIGN KEY(value_detail) REFERENCES value_details(id)
 );

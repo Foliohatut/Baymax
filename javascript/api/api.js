@@ -206,14 +206,14 @@ exports.getOtherValuesById = function(id, startIndex, limit, callback) {
 	});
 }
 
-exports.insertNewOtherValue = function(id, value, callback) {
+exports.insertNewOtherValue = function(id, value, date, callback) {
 	var response = {};
 	if (id !== undefined && value !== undefined) {
 		response.parameters_correct = true;
 		/*connection.query('select count(id) as amount from value_details where id = ?', [id], function(err, rows, fields) {
 			if (!err) {
 				if(rows[0].amount > 0) {*/
-					connection.query('insert into other_values(value, value_details) values(?, ?)',  [value, id], function(err, rows, fields) {
+					connection.query('insert into other_values(value, value_details, date) values(?, ?, ?)',  [value, id, date], function(err, rows, fields) {
 						if (!err) {
 							response.query_success = true;
 							callback(response);
@@ -231,6 +231,34 @@ exports.insertNewOtherValue = function(id, value, callback) {
 		response.parameters_correct = false;
 		callback(response);
 	}
+}
+
+exports.insertNewVoltageValue = function(id, value, date, callback) {
+	var response = {};
+	console.log("")
+	connection.query('insert into voltage_values(value, value_detail, date) values(?, ?, ?)', [value, id, date], function(err, rows, fields) {
+		if (!err) {
+			response.query_success = true;
+			callback(response);			
+		} else {
+			response.query_success = false;
+			callback(response);
+		}
+	});
+}
+
+exports.insertNewCurrentValue = function(id, value, date, callback) {
+	var response = {};
+	console.log("insert into current_values(value, value_detail, date) values("+value+", "+id+", "+date+")");
+	connection.query('insert into current_values(value, value_detail, date) values(?, ?, ?)', [value, id, date], function(err, rows, fields) {
+		if (!err) {
+			response.query_success = true;
+			callback(response);			
+		} else {
+			response.query_success = false;
+			callback(response);
+		}
+	});	
 }
 
 

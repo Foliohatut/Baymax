@@ -155,7 +155,7 @@ function Client(connection, api) {
 		api.getValueDetailName(data.id, function(response) {
 			if (response.query_success) {
 				msg.id = response.name;
-				msg.value = data.iValue;
+				msg.value = data.value;
 				connection.sendUTF(JSON.stringify(msg));
 			}
 		});

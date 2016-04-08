@@ -8,10 +8,6 @@ function WsServer(server, api) {
 	var wsServer;
 	var clients = [];
 	
-	api.getValueDetailNames(function(response) {
-		console.log(response.names);
-	});
-	
 	wsServer = new WebSocketServer({
     	httpServer: server,
     	autoAcceptConnections: false
