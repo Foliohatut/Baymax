@@ -2,20 +2,35 @@ extends layout
 
 block siteHead
 	link(rel='stylesheet', href='/stylesheets/loki.css')
+	scirpt(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js")
 	script(src="/javascripts/loki/loki.js")
+	script(src="/javascripts/loki/newchartmodal.js")
+	
 block content
-	article
-		h1 Lämpötilat
-		p
-			table(class="table table-bordered")
-				thread
-					tr
-						th Sensor id
-						th Temperature
-						th Date
-				tbody
-					each tempSensor in temperatureSensors
-						tr
-							td #{tempSensor[0]}
-							td #{tempSensor[1]}
-							td #{tempSensor[2]}
+	br
+	div(class='row')
+		div(class='col-sm-12')
+			button#addNewChart(class="btn btn-info btn-lg" data-toggle="modal" data-target="#addNewChartModal") Add new chart
+			canvas#chartCanvas(width="400" height="400")
+			div(class="modal fade" id="addNewChartModal" role="dialog")
+				div(class="modal-dialog")
+					div(class="modal-content")
+						div(class="modal-header")
+							h1 Kaavion tiedot
+							
+						div(class="modal-body")
+							div(class="dropdown")
+								button(class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown")
+									p#currentChartText Kaavion tyyppi
+										span(class="caret")
+								ul(class="dropdown-menu")
+									li#chooseCoordinateChartButton Koordinaatisto
+									li#chooseTableChartButton Taulukko
+							br
+							br
+							div#tablePropertiesContainer
+								div(class="dropdown")
+								button(class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown")
+									p#currentTableDataText Taulukon arvot
+										span(class="caret")
+								ul(class="dropdown-menu")

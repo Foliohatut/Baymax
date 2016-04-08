@@ -19,18 +19,24 @@ $(document).ready(function() {
 	
 	$("#setSuspensionLowButton").click(function() {
 		kori.suspensionModeLow();
-		api.send('suspension', 0);
+		api.Setted('suspension', 0, function() {
+			
+		});
 		
 	});
 	
 	$("#setSuspensionNormalButton").click(function() {
 		kori.suspensionModeNormal();
-		api.send('suspension', 1);
+		api.Setted('suspension', 1, function() {
+			
+		});
 	});
 	
 	$("#setSuspensionHighButton").click(function() {
 		kori.suspensionModeHigh();
-		api.send('suspension', 2);
-		$("#setSuspensionHighButton").css("background-color", "red");
+		api.Setted('suspension', 2, function() {
+			
+		});
+		//$("#setSuspensionHighButton").css("background-color", "red");
 	});
 });

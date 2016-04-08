@@ -32,7 +32,8 @@ function WsServer(server, api) {
 				//}
 			} else {
 				var client = Client(request.accept(), api);
-				client.on('setvalue', function(sender, message) {
+				client.onSet(function(message) {
+					console.log("gateway on set");
 					if (serviceConnection !== undefined) {
 						serviceConnection.sendSetCommand(message.id, message.value);
 					}

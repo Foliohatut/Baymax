@@ -10,8 +10,9 @@ function Service(connection, api) {
 	connection.on('message', function(message) {
 		var data = serverBufMessages.ServerCommandBuff.decode(message.binaryData);
 		if (data.valueSettedSubCommand !== undefined) {
+			//console.log("new value "+ JSON.stringify(data));
 			api.insertNewOtherValue(data.valueSettedSubCommand.id, data.valueSettedSubCommand.iValue, function(response) {
-				
+				console.log(JSON.stringify(response));
 			});
 			
 			raiseOnSetted(data.valueSettedSubCommand);
@@ -36,21 +37,14 @@ function Service(connection, api) {
 	}
 	
 	var sendSetCommand = function(id, value) {
+		console.log("sending set command");
 		var message = messages.CommandBuff.encode({
 			setValueSubCommand: {
-				id: 2,
+				id: id,
 				iValue: value,
 				userId: 5
 			}
 		});
-		var obj = messages.CommandBuff.decode(message);
-		console.log(obj);
-		/*var message = {};
-		message.subMessageType = 'setvalue';
-		message.subMessage = {};
-		message.subMessage.id = id;
-		message.subMessage.value = value;*/
-		//connection.sendUTF(JSON.stringify(message))
 		connection.sendBytes(message);
 	}
 	

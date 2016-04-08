@@ -78,10 +78,9 @@ var Api = function() {
 	
 	function Setted(setted, value, callback) {
 		var msg = {};
-		msg.subMessageType = 'setvalue';
-		msg.subMessage = {};
-		msg.subMessage.id = setted;
-		msg.subMessage.value = value;
+		msg.type = 'setvalue';
+		msg.id = setted;
+		msg.value = value;
 		if (socket.readyState === 1) {
 			socket.send(JSON.stringify(msg));
 			if (callback !== undefined) {

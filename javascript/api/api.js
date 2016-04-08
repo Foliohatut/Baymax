@@ -121,6 +121,20 @@ exports.getValueDetailName = function(id, callback) {
 	}
 }
 
+exports.getValueDetailId = function(name, callback) {
+	var response = {};
+	connection.query('select distinct id from value_details where name = ?', [name], function(err, rows, fields) {
+		if (!err) {
+			response.query_success = true;
+			response.id = rows[0].id;
+			callback(response);
+		} else {
+			response.query_success = false;
+			callback(response);
+		}
+	});
+}
+
 exports.getValueDetailNames = function(callback) {
 	var response = {};
 	connection.query('select name from value_details', function(err, rows, fields) {

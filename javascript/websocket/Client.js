@@ -6,7 +6,7 @@ function Client(connection, api) {
 	var id;
 	var user;
 	var passwd;
-	var events = {};
+	var onSetCallBack;
 	var authenticated = false;
 	
 	console.log("uusi client");
@@ -57,7 +57,16 @@ function Client(connection, api) {
 					connection.sendUTF(JSON.stringify(response));					
 				}
 			} else if (message.type === 'setvalue') {
-				
+				var data = {};
+				if (message.id !== undefined && message.value !== undefined) {
+					api.getValueDetailId(message.id, function(response) {
+						if (response.query_success) {
+							data.id = response.id;
+							data.value = message.value;
+							raiseOnSet(data);
+						}
+					});
+				}
 			} else if (message.type === 'getresource') {
 				
 			}
@@ -127,6 +136,19 @@ function Client(connection, api) {
 		
 	}
 	
+	function raiseOnSet(data) {
+		console.log("raise on set function");
+		if (onSetCallBack !== undefined) {
+			console.log("onSet callback not undefined");
+			onSetCallBack(data);
+		}
+	}
+	
+	function onSet(fn) {
+		console.log("onSet callback init");
+		onSetCallBack = fn;
+	}
+	
 	function sendSetted(data) {
 		var msg = {};
 		msg.type = "valuesetted";
@@ -140,7 +162,7 @@ function Client(connection, api) {
 	}
 	
 	return {
-		on:on,
+		onSet: onSet,
 		getClientId: getClientId,
 		sendSetted: sendSetted
 	}
