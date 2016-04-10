@@ -17,8 +17,9 @@ $(document).ready(function() {
 		}
 	});
 	
+	
 	$("#setSuspensionLowButton").click(function() {
-		kori.suspensionModeLow();
+		//kori.suspensionModeLow();
 		api.Setted('suspension', 0, function() {
 			
 		});
@@ -26,14 +27,14 @@ $(document).ready(function() {
 	});
 	
 	$("#setSuspensionNormalButton").click(function() {
-		kori.suspensionModeNormal();
+		//kori.suspensionModeNormal();
 		api.Setted('suspension', 1, function() {
 			
 		});
 	});
 	
 	$("#setSuspensionHighButton").click(function() {
-		kori.suspensionModeHigh();
+		//kori.suspensionModeHigh();
 		api.Setted('suspension', 2, function() {
 			
 		});

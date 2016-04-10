@@ -36,6 +36,10 @@ $(document).ready(function() {
 	]);
 	*/
 	
+	window.api.onSetted('batterycurrent', function(value) {
+		document.getElementById("currentValueP").innerHTML = value;
+	});
+	
 	$("#addNewChart").click(function() {
 		var modal = Newchartmodal();
 	});
