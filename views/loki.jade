@@ -11,27 +11,6 @@ block content
 	div(class='row')
 		div(class='col-sm-12')
 			p#currentValueP
-			button#addNewChart(class="btn btn-info btn-lg" data-toggle="modal" data-target="#addNewChartModal") Add new chart
-			canvas#chartCanvas(width="400" height="400")
-			div(class="modal fade" id="addNewChartModal" role="dialog")
-				div(class="modal-dialog")
-					div(class="modal-content")
-						div(class="modal-header")
-							h1 Kaavion tiedot
-							
-						div(class="modal-body")
-							div(class="dropdown")
-								button(class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown")
-									p#currentChartText Kaavion tyyppi
-										span(class="caret")
-								ul(class="dropdown-menu")
-									li#chooseCoordinateChartButton Koordinaatisto
-									li#chooseTableChartButton Taulukko
-							br
-							br
-							div#tablePropertiesContainer
-								div(class="dropdown")
-								button(class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown")
-									p#currentTableDataText Taulukon arvot
-										span(class="caret")
-								ul(class="dropdown-menu")
+			p#voltageValuep
+			div#valueDetailsD
+			div#values

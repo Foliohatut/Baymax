@@ -3,26 +3,35 @@ extends layout
 block siteHead
 	link(rel='stylesheet', href='/stylesheets/ohjaus.css')
 	link(rel='stylesheet', href='/stylesheets/auto.css')
-	script(src='/javascripts/ohjaus/car/body.js')
+	link(rel='stylesheet', href='/stylesheets/mersu.css')
+	link(rel='stylesheet', href='/stylesheets/fan.css')
+	script(src='/javascripts/ohjaus/mersu.js')
+	script(src='/javascripts/ohjaus/fan.js')
 	script(src='/javascripts/ohjaus/ohjaus.js')
+
 	
 block content
 	br
 	br
 	div#centerConsoleContainer
-		button#setFanSpeed1Button Tuulettimen nopeus 1
-		button#setFanSpeed2Button Tuulettimen nopeus 2
-		button#setFanSpeed3Button Tuulettimen nopeus 3
-		button#setFanSpeed4Button Tuulettimen nopeus 4
-	div#chassisContaner
-		div#suspensionIndicatorContainer
-			img#carBodyImg(width="800" src="/images/carside.png")
-		button#setSuspensionLowButton Jousitus matala
-		button#setSuspensionNormalButton Jousitus normaali
-		button#setSuspensionHighButton Jousitus korkea
-		br
-		button#setSuspensionSportButton Jousitus Sport
-		button#setSuspensionComfortButton Jousitus Comfort
+	button#setFanSpeed1Button Tuulettimen nopeus 1
+	button#setFanSpeed2Button Tuulettimen nopeus 2
+	button#setFanSpeed3Button Tuulettimen nopeus 3
+	button#setFanSpeed4Button Tuulettimen nopeus 4
+	br
+	br
+	div#fanContainer
+
+	div#chassisContainer
+	br
+	br
+	br
+	button#setSuspensionLowButton Jousitus matala
+	button#setSuspensionNormalButton Jousitus normaali
+	button#setSuspensionHighButton Jousitus korkea
+	br
+	button#setSuspensionSportButton Jousitus Sport
+	button#setSuspensionComfortButton Jousitus Comfort
 	div#motorContainer
 		button#setRegenerationOnButton Regeneration päällä
 		button#setRegenerationOffButton Regeneration pois päältä

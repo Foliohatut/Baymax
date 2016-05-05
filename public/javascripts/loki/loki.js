@@ -40,7 +40,42 @@ $(document).ready(function() {
 		document.getElementById("currentValueP").innerHTML = value;
 	});
 	
-	$("#addNewChart").click(function() {
-		var modal = Newchartmodal();
+	window.api.onSetted('batteryvoltage', function(value) {
+		document.getElementById("voltageValuep").innerHTML = value;
 	});
+	
+	
+	
+	var valuedetailsdrop = Dropdown(document.getElementById("valueDetailsD"), "Valitse arvo");//
+	valuedetailsdrop.onClick(function() {
+		//valuedetailsdrop.Clear();
+		window.api.getValueDetails();
+	});
+	//valuedetailsdrop.addItem("ab");
+	window.api.onValueDetails(function(names) {		
+		names.forEach(function(element) {
+			valuedetailsdrop.addItem(element.name);
+		}, this);
+		valuedetailsdrop.onAnyEvent(function(name) {
+			window.api.getResource(name, 20, function() {
+				
+			});
+			window.api.onResources(name, function(values) {
+				//var message = 
+				document.getElementById("values").innerHTML = "";
+				document.getElementById("values").innerHTML += " \
+					<table class='table'> \
+					<thead> \
+					<tr> \
+					<th>Detail</th><th>Values</th><th>Päiväys</th> \
+					</tr></thead> \
+					<tbody> ";
+					for (var i = 0; i < values.length; i++) {
+						document.getElementById("values").innerHTML += "<tr><td>" + values[i].value_details + "</td><td>" + values[i].value + "</td><td>" + values[i].date + "</td></tr>";
+					}
+				document.getElementById("values").innerHTML += "</tbody></table>";
+			});
+		});
+	});
+	
 });

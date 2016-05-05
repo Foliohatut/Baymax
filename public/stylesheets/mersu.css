@@ -1,0 +1,66 @@
+@keyframes rotate360 {
+  to { transform: rotate(-360deg); }
+}
+
+.car {
+	position: relative;
+	border-style: solid;
+	border-color: white;
+	width: 50%;
+}
+
+.car .dummy {
+	margin-top: 35%;
+}
+
+.car .carChassis {
+	position: absolute;
+	top:0px;
+	padding: -20px;
+	width: 100%;
+	left: 0.5%;
+	z-index: 2;
+	border-color: blue;
+	border-style: solid;
+}
+
+.car .carTireFront {
+	position: absolute;
+	width: 20%;
+	top: 42%;
+	left: 10.5%;
+	z-index: 1;
+}
+
+.car .carTireRear {
+	position: absolute;
+	width: 20%;
+	top: 42%;
+	left: 72%;
+	z-index: 1;	
+}
+
+.car .spoiler {
+	position: absolute;
+	width: 20%;
+	top: 9%;
+	left: 85%;
+	
+
+}
+
+.car .brakeFront {
+	position: absolute;
+	top:0px;
+	left: 15%;
+	width: 12%;
+	top: 52.5%;
+}
+
+.car .brakeRear {
+	position: absolute;
+	top: 0px;
+	width: 12%;
+	left: 76%;
+	top: 52%;
+}

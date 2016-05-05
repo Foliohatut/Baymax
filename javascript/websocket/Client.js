@@ -68,7 +68,24 @@ function Client(connection, api) {
 					});
 				}
 			} else if (message.type === 'getresource') {
-				
+				var response = {};
+				if (message.name !== undefined) {
+					api.getOtherValuesByName(message.name, 0, 50, function(res) {
+						console.log(res.query_success);
+						response.type = "resources";
+						response.id = message.name;
+						response.values = res.values;
+						connection.sendUTF(JSON.stringify(response));					
+					});					
+				}
+			} else if (message.type === 'getvaluedetails') {
+				var response = {};
+				api.getValueDetailNames(function(res) {
+					console.log(JSON.stringify(res.names));
+					response.type = "valuedetails";
+					response.names = res.names;
+					connection.sendUTF(JSON.stringify(response));
+				});
 			}
 		}
 	}

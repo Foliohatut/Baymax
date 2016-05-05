@@ -1,0 +1,29 @@
+@keyframes rotate360 {
+  to { transform: rotate(-720deg); }
+}
+
+.dash {
+	position: relative;
+	border-color: white;
+	border-style: solid;
+	width: 50%;
+}
+
+.dash .dummy {
+	margin-top: 110%;
+}
+
+.dash .blowerFrame {
+	position: absolute;
+	top:0px;
+	width: 100%;
+	left: 0%;
+}
+
+.dash .blower {
+	position: absolute;
+	width: 60%;
+	top: 9%;
+	left: 20%;
+}
+

@@ -176,7 +176,7 @@ exports.getOtherValuesByName = function(name, startIndex, limit, callback) {
 	var limitCurrent = 10;
 	if (startIndex !== undefined) startIndexCurrent = startIndex;
 	if (limit !== undefined) limitCurrent = limit;
-	connection.query('select vd.name, ov.value, ov.date from other_values ov left join value_details vd on av.value_details = vd.id where vd.name = ? order by ov.date limit ?, ?', [name, startIndexCurrent, limitCurrent], function(err, rows, fields) {
+	connection.query('select vd.name, ov.value, ov.date from other_values ov left join value_details vd on ov.value_details = vd.id where vd.name = ? order by ov.date limit ?, ?', [name, startIndexCurrent, limitCurrent], function(err, rows, fields) {
 		if (!err) {
 			response.query_success = true;
 			response.values = rows;

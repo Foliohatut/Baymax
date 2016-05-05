@@ -4,6 +4,8 @@ var Api = function() {
 	var socket;
 	var connectInterval;
 	var valueStettedEvents = new Map(); 
+	var resourcesEvents = new Map();
+	var valueDetailsEvents = [];
 		
 	function Connect() {
 		if (socket === undefined || socket.readyState !== 1) {
@@ -62,9 +64,29 @@ var Api = function() {
 						element(message.value);
 					}, this);
 				}
+			} else if (message.type === 'resources') {
+				var event = resourcesEvents.get(message.id);
+				if (event !== undefined) {
+					event.forEach(function(element) {
+						element(message.values);
+					}, this);
+				}
+			} else if (message.type === 'valuedetails') {
+				valueDetailsEvents.forEach(function(element) {
+					element(message.names);
+				}, this);
 			}
 		}
 
+	}
+	
+	function onResources(setted, callback) {
+		var event = resourcesEvents.get(setted);
+		if (event === undefined) {
+			event = [];
+		}
+		event.push(callback);
+		resourcesEvents.set(setted, event);
 	}
 	
 	function onSetted(setted, callback) {
@@ -89,9 +111,40 @@ var Api = function() {
 		}
 	}
 	
+	function getResource(name, limit, callback) {
+		var msg = {};
+		msg.type = "getresource";
+		msg.name = name;
+		msg.limit = limit;
+		if (socket.readyState === 1) {
+			socket.send(JSON.stringify(msg));
+			if (callback !== undefined) {
+				
+			}
+		}
+	}
+	
+	function onValueDetails(callback) {
+		valueDetailsEvents.push(callback);
+	}
+	
+	function getValueDetails() {
+		var msg = {};
+		msg.type = "getvaluedetails";
+		if (socket.readyState === 1) {			
+			socket.send(JSON.stringify(msg));
+		}
+	}
+	
+	//function getResource(name, )
+	
 	return {
 		onSetted: onSetted,
-		Setted: Setted
+		Setted: Setted,
+		getResource: getResource,
+		onResources: onResources,
+		onValueDetails: onValueDetails,
+		getValueDetails: getValueDetails
 	};	
 }
 
